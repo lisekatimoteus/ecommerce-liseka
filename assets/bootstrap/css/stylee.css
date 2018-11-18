@@ -1,0 +1,103 @@
+body
+{
+	
+}
+h1,h2,h3,h4,h5,h6
+{
+	/*margin: 0px;
+	padding: 0px;
+	font-weight: 700;*/
+}
+
+.topbar
+{
+	padding: 10px 0px;
+	background: black;
+	color: #fff;
+}
+
+.topbar .contact
+{
+	text-align: right;
+}
+
+.topbar .contact ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.topbar .contact ul li
+{
+	display: inline-block;
+	padding-right: 20px;
+}
+
+.header
+{
+	padding: 50px 0px;
+	background: white;
+}
+
+.header .search input 
+{
+	width: 60%;
+}
+
+.header .search select
+{
+	width: 40%;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+
+/*footer*/
+.footer-top
+{
+	padding: 50px 0px;
+	color: #f8f8f8;
+	background: #202020;
+}
+
+.footer-top .footer-title
+{
+	font-size: 16px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	color: #898989;
+}
+
+.footer-top ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.footer-top ul li
+{
+	margin-bottom: 10px;
+	color: #666;
+}
+
+.footer-top p
+{
+	color: #666;
+}
+
+.footer-top ul li a 
+{
+	color: #666;
+	margin-bottom: 
+}
+
+.footer-bottom
+{
+	padding: 20px 0px;
+	background: #121212;
+	color: #898989;
+	text-align: center;
+}
