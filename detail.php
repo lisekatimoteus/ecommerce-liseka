@@ -1,7 +1,17 @@
+<?php session_start(); ?>
+
+<?php $conn = new mysqli("localhost","root","","project"); ?>
 <?php 
-session_start();
-//koneksi ke database
-$conn = new mysqli("localhost","root","","project");
+//mendapatkan id_produk dari url
+$id_produk = $_GET["id"];
+//query ambil data
+$ambil = $conn->query("SELECT * FROM produk WHERE id_produk='$id_produk'");
+$detail = $ambil->fetch_assoc();
+
+// echo "<pre>";
+// print_r($detail);
+// echo "</pre>";
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -107,29 +117,26 @@ $conn = new mysqli("localhost","root","","project");
 		<div class="container">
 				<div class="row">
 					<div class="col-md-9 col-md-push-3">
-						<img src="fotoproduk/backk.jpg" width="600" >
-					</div>
+						<div class="col-md-6">
+					<img src="fotoproduk/<?php echo $detail["foto_produk"];?>" class="img-responsive" width="100%">
 				</div>
-		</div>
-	</main>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-9 col-md-push-3">
-				<h3 class="text-center">PROMO</h3><br>
-				<?php $ambil= $conn->query("SELECT * FROM produk WHERE id_produk<9"); ?>
-				<?php while($perproduk=$ambil->fetch_assoc()){ ?>
-				<div class="col-md-3">
-					<div class="thumbnail">
-						<img src="fotoproduk/<?php echo $perproduk['foto_produk']; ?>" class="img-responsive">
-							<div class="caption">
-								<h4><?php echo $perproduk['nama_produk']?></h4>
-								<h5>Rp. <?php echo number_format($perproduk['harga_produk'])?></h5>
-								<a href="#?id=<?php echo $perproduk['id_produk']; ?>" class="btn btn-primary">Buy</a>
-								<a href="detail.php?id=<?php echo $perproduk['id_produk']; ?>" class="btn btn-default">Detail</a>
+				<div class="col-md-6">
+					<h2><?php echo $detail["nama_produk"];?></h2>
+					<h4>Rp. <?php echo number_format($detail["harga_produk"]);?></h4>
+
+					<form method="post">
+						<div class="form-group">
+							<div class="input-group">
+								<input type="number" min="1" class="form-control" name="jumlah">
+								<div class="input-group-btn">
+									<button class="btn btn-primary" name="beli">Beli</button>
+								</div>
 							</div>
-					</div>
+						</div>
+					</form>
+
+					<p><?php echo $detail["deskripsi_produk"];?></p>
 				</div>
-				<?php } ?>
 			</div>
 			<br> <br> <br> <br>
 			<div class="col-md-3 col-md-pull-9">
@@ -152,9 +159,11 @@ $conn = new mysqli("localhost","root","","project");
 	</div>
 
 	<!-- beberapa produk -->
+	<br><br>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9 col-md-push-3">
+				<h2 class="text-center">PRODUK</h2><br>
 				<?php $ambil= $conn->query("SELECT * FROM produk WHERE id_produk>8 && id_produk<13"); ?>
 				<?php while($perproduk=$ambil->fetch_assoc()){ ?>
 				<div class="col-md-3">
@@ -191,7 +200,7 @@ $conn = new mysqli("localhost","root","","project");
 							</div>
 					</div>
 				</div>
-				<?php } ?>
+				<?php } ?><a href="#" class="btn btn-primary">Lihat Selengkapnya</a>
 			</div>
 
 			<div class="col-md-3 col-md-pull-9">
@@ -200,27 +209,6 @@ $conn = new mysqli("localhost","root","","project");
 					</div>	
 			</div>
 
-			<div class="col-md-9 col-md-push-3">
-				<?php $ambil= $conn->query("SELECT * FROM produk WHERE id_produk>16 && id_produk<21"); ?>
-				<?php while($perproduk=$ambil->fetch_assoc()){ ?>
-				<div class="col-md-3">
-					<div class="thumbnail">
-						<img src="fotoproduk/<?php echo $perproduk['foto_produk']; ?>">
-							<div class="caption">
-								<h4><?php echo $perproduk['nama_produk']?></h4>
-								<h5>Rp. <?php echo number_format($perproduk['harga_produk'])?></h5>
-								<a href="#?id=<?php echo $perproduk['id_produk']; ?>" class="btn btn-primary">Buy</a>
-								<a href="detail.php?id=<?php echo $perproduk['id_produk']; ?>" class="btn btn-default">Detail</a>
-							</div>
-					</div>
-				</div>
-				<?php } ?><a href="#" class="btn btn-primary">Lihat Selengkapnya</a>
-			</div>
-
-			<div class="col-md-3 col-md-pull-9">
-					<div class="box-body text-center">
-						<img src="fotoproduk/left1.jpg" class="img-responsive" width="235">
-					</div>	
 			</div>
 		</div>
 
